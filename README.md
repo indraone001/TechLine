@@ -11,5 +11,5 @@ penjualan obat-obatan secara online berbasis web application menggunakan framewo
 ###### open your folder directory & pull via cmd/terminal
 `git pull origin master`
 
-##PUSH
-####push to your branch **not master**
+## PUSH
+#### push to your branch **not master**
