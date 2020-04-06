@@ -40,7 +40,11 @@ class Users_model extends CI_model
                         'role_id' => $user['role_id'],
                     ];
                     $this->session->set_userdata($data);
-                    redirect('user');
+                    if ($user['role_id'] == 2) {
+                        redirect('user');
+                    } else {
+                        redirect('admin');
+                    }
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
                     redirect('auth');
