@@ -16,7 +16,7 @@ class Users_model extends CI_model
             'email_user' => htmlspecialchars($this->input->post('email')),
             'alamat_user' => "",
             'no_telp' => "",
-            'image' => "default",
+            'image' => "default.jpg",
             'role_id' => "2",
             'is_active' => "1",
             'date_created' => time(),
