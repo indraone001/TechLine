@@ -10,7 +10,7 @@
                     <!-- Nested Row within Card Body -->
                     <div class="row">
                         <div class="col-lg-6 d-none d-lg-block">
-                            <img class="text-center" width="100%" src="<?= base_url('assets/'); ?>img/fullview.jpg" alt="">
+                            <img style="margin-top : 25%; margin-left : 5%;" class="text-center" width="100%" src="<?= base_url('assets/'); ?>img/login.png" alt="">
                         </div>
                         <div class="col-lg-6">
                             <div class="p-5">
