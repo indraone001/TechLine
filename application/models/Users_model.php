@@ -58,4 +58,8 @@ class Users_model extends CI_model
             redirect('auth');
         }
     }
+    public function getUserSession()
+    {
+        return $this->db->get_where('Users', ['email_user' => $this->session->userdata('email_user')])->row_array();
+    }
 }
