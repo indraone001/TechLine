@@ -14,13 +14,28 @@ class User extends CI_Controller
     public function index()
     {
         $data['title'] = "Landing";
+        $data['category'] = "All Items";
         $data['user'] = $this->Users_model->getUserSession();
         $data['obat'] = $this->Obat_model->getAllObat();
+        $this->load->view('templates/user_header', $data);
         $this->load->view('user/user_landing', $data);
+        $this->load->view('templates/user_footer', $data);
+    }
+
+    public function sort()
+    {
+        $data['title'] = "Landing";
+        $data['category'] = $_GET['id'];
+        $data['user'] = $this->Users_model->getUserSession();
+        $data['obat'] = $this->Obat_model->getSortObat();
+        $this->load->view('templates/user_header', $data);
+        $this->load->view('user/user_landing', $data);
+        $this->load->view('templates/user_footer', $data);
     }
 
     public function about()
     {
-        $this->load->view('user/user_about');
+        $data['title'] = "About";
+        $this->load->view('user/user_about', $data);
     }
 }

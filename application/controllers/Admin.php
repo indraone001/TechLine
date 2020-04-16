@@ -22,4 +22,17 @@ class Admin extends CI_Controller
         $this->load->view('user/admin_dashboard', $data);
         $this->load->view('templates/admin_footer');
     }
+
+    public function obat()
+    {
+        $data['title'] = "Obat";
+        $data['user'] = $this->Users_model->getUserSession();
+        $data['obat'] = $this->Obat_model->getAllObat();
+        $data['jenis'] = ['sirup', 'herbal'];
+        $this->load->view('templates/admin_header', $data);
+        $this->load->view('templates/admin_sidebar', $data);
+        $this->load->view('templates/admin_topbar', $data);
+        $this->load->view('user/admin_obat', $data);
+        $this->load->view('templates/admin_footer');
+    }
 }
