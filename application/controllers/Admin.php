@@ -87,11 +87,43 @@ class Admin extends CI_Controller
     {
         $data['title'] = "Obat";
         $data['user'] = $this->Users_model->getUserSession();
-        $data['obat'] = $this->Users_model->getAllUsers();
+        $data['account'] = $this->Users_model->getUsers();
         $this->load->view('templates/admin_header', $data);
         $this->load->view('templates/admin_sidebar', $data);
         $this->load->view('templates/admin_topbar', $data);
-        $this->load->view('user/admin_obat', $data);
+        $this->load->view('user/admin_account', $data);
         $this->load->view('templates/admin_footer');
+    }
+
+    public function deleteUser()
+    {
+        if ($this->Users_model->delete() == false) {
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Delete success!</strong> user has been deleted!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            redirect('admin/account');
+        } else {
+            echo 'gagal';
+        }
+    }
+
+    public function editUser()
+    {
+        if ($this->Users_model->edit() == false) {
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Edit success!</strong> User has been eddited!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            redirect('admin/account');
+        } else {
+            echo 'gagal';
+        }
     }
 }

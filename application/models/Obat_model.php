@@ -32,16 +32,15 @@ class Obat_model extends CI_model
         $deskripsi = $this->input->post('deskripsi');
         $kuantitas = $this->input->post('kuantitas');
         switch ($jenis_obat) {
-            case 'Capsule':
+            case 'capsule':
                 $image = 'capsule.png';
                 break;
-            case 'Tablet':
+            case 'tablet':
                 $image = 'tablet.png';
                 break;
-            case 'Syrup':
+            case 'syrup':
                 $image = 'syrup.png';
                 break;
-
             default:
                 $image = 'medicine.png';
                 break;

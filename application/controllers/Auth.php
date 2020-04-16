@@ -38,7 +38,7 @@ class Auth extends CI_Controller
             $this->load->view('templates/auth_footer');
         } else {
             $this->Users_model->addUser();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Registration success! Please Login</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">contact admin for verify account!</div>');
             redirect('auth');
         }
     }

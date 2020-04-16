@@ -8,6 +8,11 @@ class Users_model extends CI_model
         return $this->db->get('Users')->result_array();
     }
 
+    public function getUsers()
+    {
+        return $this->db->get('Users')->result();
+    }
+
     public function addUser()
     {
         $data = [
@@ -18,7 +23,7 @@ class Users_model extends CI_model
             'no_telp' => "",
             'image' => "default.jpg",
             'role_id' => "2",
-            'is_active' => "1",
+            'is_active' => "0",
             'date_created' => time(),
         ];
 
@@ -61,5 +66,42 @@ class Users_model extends CI_model
     public function getUserSession()
     {
         return $this->db->get_where('Users', ['email_user' => $this->session->userdata('email_user')])->row_array();
+    }
+
+    public function delete()
+    {
+        $id_user = $this->input->post('id_user');
+        $this->db->delete('Users', array('id_user' => $id_user));
+        return;
+    }
+
+    public function edit()
+    {
+        $id_user = $this->input->post('id_user');
+        $nama_user = $this->input->post('nama_user');
+        $email_user = $this->input->post('email_user');
+        $alamat_user = $this->input->post('alamat_user');
+        $no_telp = $this->input->post('no_telp');
+        // // $image = $this->input->post('image');
+        $role_id = $this->input->post('role_id');
+        $is_active = $this->input->post('is_active');
+
+        $data = array(
+            'nama_user' => $nama_user,
+            'email_user' => $email_user,
+            'alamat_user' => $alamat_user,
+            'no_telp' => $no_telp,
+            //  'image' => $image,
+            'role_id' => $role_id,
+            'is_active' => $is_active,
+        );
+
+        $where = array(
+            'id_user' => $id_user
+        );
+
+        $this->db->where($where);
+        $this->db->update('Users', $data);
+        return;
     }
 }
