@@ -13,6 +13,10 @@ class User extends CI_Controller
 
     public function index()
     {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
         $data['title'] = "Landing";
         $data['category'] = "All Items";
         $data['user'] = $this->Users_model->getUserSession();
@@ -24,6 +28,10 @@ class User extends CI_Controller
 
     public function sort()
     {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
         $data['title'] = "Landing";
         $data['category'] = $_GET['id'];
         $data['user'] = $this->Users_model->getUserSession();
@@ -35,6 +43,10 @@ class User extends CI_Controller
 
     public function about()
     {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
         $data['title'] = "About";
         $this->load->view('user/user_about', $data);
     }

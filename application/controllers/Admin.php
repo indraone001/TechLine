@@ -15,6 +15,10 @@ class Admin extends CI_Controller
 
     public function index()
     {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
         $data['title'] = "Admin";
         $data['user'] = $this->Users_model->getUserSession();
         $this->load->view('templates/admin_header', $data);
@@ -26,6 +30,10 @@ class Admin extends CI_Controller
 
     public function obat()
     {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
         $data['title'] = "Obat";
         $data['user'] = $this->Users_model->getUserSession();
         $data['obat'] = $this->Obat_model->getAllObat();
@@ -38,6 +46,10 @@ class Admin extends CI_Controller
 
     public function delete()
     {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
         if ($this->Obat_model->deleteObat() == false) {
             $this->session->set_flashdata('message', '
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -54,6 +66,10 @@ class Admin extends CI_Controller
 
     public function edit()
     {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
         if ($this->Obat_model->editObat() == false) {
             $this->session->set_flashdata('message', '
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -70,6 +86,10 @@ class Admin extends CI_Controller
 
     public function insert()
     {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
         if ($this->Obat_model->addObat() == false) {
             $this->session->set_flashdata('message', '
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -86,6 +106,10 @@ class Admin extends CI_Controller
 
     public function account()
     {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
         $data['title'] = "Obat";
         $data['user'] = $this->Users_model->getUserSession();
         $data['account'] = $this->Users_model->getUsers();
@@ -98,6 +122,10 @@ class Admin extends CI_Controller
 
     public function deleteUser()
     {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
         if ($this->Users_model->delete() == false) {
             $this->session->set_flashdata('message', '
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -114,6 +142,10 @@ class Admin extends CI_Controller
 
     public function editUser()
     {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
         //image upload
         $config['upload_path']          = 'assets/img/users';
         $config['allowed_types']        = 'gif|jpg|png';
