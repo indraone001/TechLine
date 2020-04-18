@@ -7,6 +7,7 @@ class Admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper(array('form', 'url', 'file'));
         $this->load->library(array('form_validation', 'session'));
         $this->load->model('Users_model');
         $this->load->model('Obat_model');
@@ -113,7 +114,25 @@ class Admin extends CI_Controller
 
     public function editUser()
     {
-        if ($this->Users_model->edit() == false) {
+        //image upload
+        $config['upload_path']          = 'assets/img/users';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 10000;
+        $config['max_width']            = 10000;
+        $config['max_height']           = 10000;
+
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload('userfile')) {
+            // print_r($this->upload->display_errors());
+            $image = $this->input->post('recentImage');
+        } else {
+            $result = $this->upload->data();
+            $image = $result['file_name'];
+        }
+
+        if ($this->Users_model->edit($image) == false) {
             $this->session->set_flashdata('message', '
             <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Edit success!</strong> User has been eddited!

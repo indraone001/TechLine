@@ -63,49 +63,51 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form class="obat" method="post" action="<?= base_url('admin/editUser') ?>">
-                                    <input type="text" class="form-control" id="id_user" name="id_user" placeholder="<?= $ac->id_user; ?>" value="<?= $ac->id_user; ?>" hidden>
-                                    <div class="form-group">
-                                        <label for="nama_user">Name</label>
-                                        <input type="text" class="form-control" id="nama_user" name="nama_user" placeholder="<?= $ac->nama_user; ?>" value="<?= $ac->nama_user; ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email_user">Email</label>
-                                        <input type="text" class="form-control" id="email_user" name="email_user" placeholder="<?= $ac->email_user; ?>" value="<?= $ac->email_user; ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="alamat_user">Address</label>
-                                        <input type="text" class="form-control" id="alamat_user" name="alamat_user" placeholder="<?= $ac->alamat_user; ?>" value="<?= $ac->alamat_user; ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="no_telp">Phone</label>
-                                        <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="<?= $ac->no_telp; ?>" value="<?= $ac->no_telp; ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="image">Image</label>
-                                        <input type="file" class="form-control-file" id="image">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jenis_obat">Role ID</label>
-                                        <select class="custom-select" id="role_id" name="role_id" required>
-                                            <option value="<?= $ac->role_id; ?>"><?= $role; ?></option>
-                                            <option value="1">Admin</option>
-                                            <option value="2">User</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jenis_obat">Is Active</label>
-                                        <select class="custom-select" id="is_active" name="is_active" required>
-                                            <option value="<?= $ac->is_active; ?>"><?= $active; ?></option>
-                                            <option value="0">Not Activated</option>
-                                            <option value="1">Actived</option>
-                                        </select>
-                                    </div>
+                                <!-- <form class="obat" method="post" action="<?= base_url('admin/editUser') ?>" enctype="multipart/form-data"> -->
+                                <?php echo form_open_multipart('admin/editUser'); ?>
+                                <input type="text" class="form-control" id="id_user" name="id_user" placeholder="<?= $ac->id_user; ?>" value="<?= $ac->id_user; ?>" hidden>
+                                <input type="text" class="form-control" id="recentImage" name="recentImage" placeholder="<?= $ac->image; ?>" value="<?= $ac->image; ?>" hidden>
+                                <div class="form-group">
+                                    <label for="nama_user">Name</label>
+                                    <input type="text" class="form-control" id="nama_user" name="nama_user" placeholder="<?= $ac->nama_user; ?>" value="<?= $ac->nama_user; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email_user">Email</label>
+                                    <input type="text" class="form-control" id="email_user" name="email_user" placeholder="<?= $ac->email_user; ?>" value="<?= $ac->email_user; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="alamat_user">Address</label>
+                                    <input type="text" class="form-control" id="alamat_user" name="alamat_user" placeholder="<?= $ac->alamat_user; ?>" value="<?= $ac->alamat_user; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="no_telp">Phone</label>
+                                    <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="<?= $ac->no_telp; ?>" value="<?= $ac->no_telp; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="image">Image</label><br>
+                                    <input type="file" name="userfile" size="20" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="jenis_obat">Role ID</label>
+                                    <select class="custom-select" id="role_id" name="role_id" required>
+                                        <option value="<?= $ac->role_id; ?>"><?= $role; ?></option>
+                                        <option value="1">Admin</option>
+                                        <option value="2">User</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jenis_obat">Is Active</label>
+                                    <select class="custom-select" id="is_active" name="is_active" required>
+                                        <option value="<?= $ac->is_active; ?>"><?= $active; ?></option>
+                                        <option value="0">Not Activated</option>
+                                        <option value="1">Actived</option>
+                                    </select>
+                                </div>
 
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" name="save" class="btn btn-primary">Save changes</button>
+                                <button type="submit" name="upload" class="btn btn-primary">Save changes</button>
                             </div>
                             </form>
                         </div>
