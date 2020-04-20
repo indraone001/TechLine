@@ -9,6 +9,7 @@ class User extends CI_Controller
         $this->load->library(array('form_validation', 'session'));
         $this->load->model('Users_model');
         $this->load->model('Obat_model');
+        $this->load->model('Cart_model');
     }
 
     public function index()
@@ -49,5 +50,19 @@ class User extends CI_Controller
 
         $data['title'] = "About";
         $this->load->view('user/user_about', $data);
+    }
+
+    public function cart()
+    {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
+        $data['title'] = "Cart";
+        $data['user'] = $this->Users_model->getUserSession();
+        $data['cart'] = $this->Cart_model->getCart();
+        $this->load->view('templates/cart_header', $data);
+        $this->load->view('user/user_cart', $data);
+        $this->load->view('templates/user_footer', $data);
     }
 }

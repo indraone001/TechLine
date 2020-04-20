@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-        <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/style-landing.css">
+        <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/style-cart.css">
         <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/jquery.nice-number.css">
         <!-- Font Montserrat -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,550,600,700&display=swap" rel="stylesheet">
