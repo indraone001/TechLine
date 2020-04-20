@@ -2,9 +2,11 @@
 $items = 0;
 $price = 0;
 ?>
+
 <main>
     <section>
         <div class="container">
+            <?= $this->session->flashdata('message'); ?>
             <h1>Cart</h1>
             <div class="row">
                 <div class="col-md-8">
@@ -37,7 +39,11 @@ $price = 0;
                                                 </div>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn cancel">Cancel</button>
+                                                <form method="post" action="<?= base_url('user/cartDelete') ?>">
+                                                    <input type="text" id="id_transaksi" name="id_transaksi" value="<?= $c->id_transaksi; ?>" hidden>
+                                                    <input type="text" id="id_item" name="id_item" value="<?= $c->id_item; ?>" hidden>
+                                                    <button class="btn cancel">Cancel</button>
+                                                </form>
                                             </td>
                                         </tr>
 
@@ -59,7 +65,12 @@ $price = 0;
                             <div class="container">
                                 <h4>Total Item : <span><?= $items ?></span></h4>
                                 <h4>Total Price : <span>Rp. <?= $price ?></span></h4>
-                                <a class="btn pay-item btn-block" href="#" role="button">Pay Item</a>
+                                <form form method="post" action="<?= base_url('user/cartPay') ?>">
+                                    <?php if ($items != 0) { ?>
+                                        <input type="text" id="id_user" name="id_transaksi" value="<?= $c->id_user; ?>" hidden>
+                                    <?php } ?>
+                                    <button class="btn pay-item btn-block">Pay Item</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -82,7 +93,7 @@ $price = 0;
                                 } else if ($c->status == 1) {
                                     $status = '<p style="color: green" >Already paid</p>';
                                 } else {
-                                    $status = "<p >On process</p>";
+                                    $status = '<p style="color: orange ">On process</p>';
                                 }
                                 ?>
                                 <tr>
@@ -110,7 +121,11 @@ $price = 0;
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="" class="delete"><img src="<?= base_url(); ?>/assets/img/delete.png" alt="" width="20px"></a>
+                                        <form method="post" action="<?= base_url('user/historyDelete') ?>">
+                                            <input type="text" id="id_transaksi" name="id_transaksi" value="<?= $c->id_transaksi; ?>" hidden>
+                                            <input type="text" id="id_item" name="id_item" value="<?= $c->id_item; ?>" hidden>
+                                            <button class="btn delete btn-light"><img src="<?= base_url(); ?>/assets/img/delete.png" alt="" width="20px"></button>
+                                        </form>
                                     </td>
                                 </tr>
 

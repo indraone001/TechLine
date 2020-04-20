@@ -57,12 +57,47 @@ class User extends CI_Controller
         if (!$_SESSION['email_user']) {
             redirect('auth');
         }
-
+        $id = $_SESSION['id'];
         $data['title'] = "Cart";
         $data['user'] = $this->Users_model->getUserSession();
-        $data['cart'] = $this->Cart_model->getCart();
+        $data['cart'] = $this->Cart_model->getCart($id);
         $this->load->view('templates/cart_header', $data);
         $this->load->view('user/user_cart', $data);
         $this->load->view('templates/user_footer', $data);
+    }
+
+    public function cartDelete()
+    {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Transaction has been canceled!</div>');
+
+        $data['user'] = $this->Cart_model->deleteCart();
+        redirect('user/cart');
+    }
+
+    public function cartPay()
+    {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Transaction will be process!</div>');
+
+        $data['user'] = $this->Cart_model->Pay();
+        redirect('user/cart');
+    }
+
+    public function historyDelete()
+    {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">History transaction has been deleted!</div>');
+
+        $data['user'] = $this->Cart_model->deleteCart();
     }
 }

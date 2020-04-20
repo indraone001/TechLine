@@ -45,7 +45,7 @@ class Users_model extends CI_model
                         'role_id' => $user['role_id'],
                     ];
                     $this->session->set_userdata($data);
-
+                    $_SESSION['id'] = $user['id_user'];
                     if ($user['role_id'] == 2) {
                         redirect('user');
                     } else {
