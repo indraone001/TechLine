@@ -99,5 +99,18 @@ class User extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">History transaction has been deleted!</div>');
 
         $data['user'] = $this->Cart_model->deleteCart();
+        redirect('user/cart');
+    }
+
+    public function order()
+    {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+        $id = $_SESSION['id'];
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Item has been added to your cart</div>');
+
+        $data['user'] = $this->Cart_model->orderCart($id);
+        redirect('user');
     }
 }

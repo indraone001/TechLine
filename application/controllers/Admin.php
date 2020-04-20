@@ -11,6 +11,7 @@ class Admin extends CI_Controller
         $this->load->library(array('form_validation', 'session'));
         $this->load->model('Users_model');
         $this->load->model('Obat_model');
+        $this->load->model('Cart_model');
     }
 
     public function index()
@@ -175,6 +176,52 @@ class Admin extends CI_Controller
             redirect('admin/account');
         } else {
             echo 'gagal';
+        }
+    }
+
+    public function transaksi()
+    {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
+        $data['title'] = "Transaksi";
+        $data['user'] = $this->Users_model->getUserSession();
+        $data['transaksi'] = $this->Cart_model->getTrans();
+        $this->load->view('templates/admin_header', $data);
+        $this->load->view('templates/admin_sidebar', $data);
+        $this->load->view('templates/admin_topbar', $data);
+        $this->load->view('user/admin_transaksi', $data);
+        $this->load->view('templates/admin_footer');
+    }
+
+    public function proccess_transaksi()
+    {
+        if (!$_SESSION['email_user']) {
+            redirect('auth');
+        }
+
+        $id_transaksi = $this->input->post('id_transaksi');
+
+
+        if ($this->Cart_model->Proccess($id_transaksi) == false) {
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> Transaction has been proccess!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            redirect('admin/transaksi');
+        } else {
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Failed!</strong> Out of Stock!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            redirect('admin/transaksi');
         }
     }
 }

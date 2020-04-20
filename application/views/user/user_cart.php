@@ -76,6 +76,30 @@ $price = 0;
                     </div>
                 </div>
 
+                <!-- Modal Payment-->
+                <!-- <div class="modal fade" id="Payment<?= $o->id_obat; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title" id="deleteLabel">Payment info</h2>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h4>Are you sure want to delete this item?</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <form method="post" action="<?= base_url('admin/delete') ?>">
+                                    <input type="text" class="form-control" id="id_obat" name="id_obat" placeholder="<?= $o->id_obat; ?>" value="<?= $o->id_obat; ?>" hidden>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
             </div>
         </div>
     </section>
