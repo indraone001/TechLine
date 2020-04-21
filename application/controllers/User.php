@@ -84,11 +84,35 @@ class User extends CI_Controller
             redirect('auth');
         }
 
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Transaction will be process!</div>');
+        //image upload
+        $config['upload_path']          = 'assets/img/transfer';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 10000;
+        $config['max_width']            = 10000;
+        $config['max_height']           = 10000;
 
-        $data['user'] = $this->Cart_model->Pay();
-        redirect('user/cart');
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload('userfile')) {
+            // print_r($this->upload->display_errors());
+            $image = "null";
+        } else {
+            $result = $this->upload->data();
+            $image = $result['file_name'];
+        }
+
+        if ($image == "null") {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Upload Failed!</div>');
+            redirect('user/cart');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Transaction will be process!</div>');
+            $data['user'] = $this->Cart_model->Pay($image);
+            redirect('user/cart');
+        }
     }
+
+
 
     public function historyDelete()
     {

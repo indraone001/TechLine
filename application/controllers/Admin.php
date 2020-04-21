@@ -19,6 +19,9 @@ class Admin extends CI_Controller
         if (!$_SESSION['email_user']) {
             redirect('auth');
         }
+        //get transaction
+        $data['transaksi'] = $this->Cart_model->getTrans();
+        $data['success'] = $this->Cart_model->getSuccess();
 
         $data['title'] = "Admin";
         $data['user'] = $this->Users_model->getUserSession();
@@ -34,6 +37,8 @@ class Admin extends CI_Controller
         if (!$_SESSION['email_user']) {
             redirect('auth');
         }
+        //get transaction
+        $data['transaksi'] = $this->Cart_model->getTrans();
 
         $data['title'] = "Obat";
         $data['user'] = $this->Users_model->getUserSession();
@@ -110,6 +115,8 @@ class Admin extends CI_Controller
         if (!$_SESSION['email_user']) {
             redirect('auth');
         }
+        //get transaction
+        $data['transaksi'] = $this->Cart_model->getTrans();
 
         $data['title'] = "Obat";
         $data['user'] = $this->Users_model->getUserSession();

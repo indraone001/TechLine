@@ -44,7 +44,7 @@
                 <div class="modal fade" id="edit<?= $tr->id_transaksi; ?>" tabindex="-1" role="dialog" aria-labelledby="Edit" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <!-- <div class="modal-content"> -->
-                        <img src="<?= base_url('assets/img/transaction/') . $tr->bukti_pembayaran; ?>" alt="">
+                        <img src="<?= base_url('assets/img/transfer/') . $tr->bukti_pembayaran; ?>" alt="">
                         <br><br>
                         <center>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" hidden>Close</button>

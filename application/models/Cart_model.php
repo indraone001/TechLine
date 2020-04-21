@@ -10,12 +10,24 @@ class Cart_model extends CI_model
 
     public function getTrans()
     {
-        $this->db->select('Transaksi.*, Cart.jumlah_obat, Obat.*, Users.nama_user');
+        $this->db->select('Transaksi.*, Cart.jumlah_obat, Obat.*, Users.nama_user, Users.image as img');
         $this->db->from('Transaksi, Cart, Obat, Users');
         $this->db->where('Transaksi.id_item = Cart.id_item');
         $this->db->where('Transaksi.id_user = Users.id_user');
         $this->db->where('Cart.id_obat = Obat.id_obat');
         $this->db->where('status = 2');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getSuccess()
+    {
+        $this->db->select('Transaksi.*, Cart.jumlah_obat, Obat.*, Users.nama_user');
+        $this->db->from('Transaksi, Cart, Obat, Users');
+        $this->db->where('Transaksi.id_item = Cart.id_item');
+        $this->db->where('Transaksi.id_user = Users.id_user');
+        $this->db->where('Cart.id_obat = Obat.id_obat');
+        $this->db->where('status = 1');
         $query = $this->db->get();
         return $query->result();
     }
@@ -40,12 +52,13 @@ class Cart_model extends CI_model
         return;
     }
 
-    public function Pay()
+    public function Pay($image)
     {
         $id_user = $this->input->post('id_transaksi');
 
         $data = array(
             'status' => 2,
+            'bukti_pembayaran' => $image,
         );
 
         $where = array(
