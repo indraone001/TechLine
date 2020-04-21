@@ -45,6 +45,7 @@ class Users_model extends CI_model
                         'role_id' => $user['role_id'],
                     ];
                     $this->session->set_userdata($data);
+                    $_SESSION['id'] = $user['id_user'];
                     if ($user['role_id'] == 2) {
                         redirect('user');
                     } else {
@@ -75,14 +76,13 @@ class Users_model extends CI_model
         return;
     }
 
-    public function edit()
+    public function edit($image)
     {
         $id_user = $this->input->post('id_user');
         $nama_user = $this->input->post('nama_user');
         $email_user = $this->input->post('email_user');
         $alamat_user = $this->input->post('alamat_user');
         $no_telp = $this->input->post('no_telp');
-        // // $image = $this->input->post('image');
         $role_id = $this->input->post('role_id');
         $is_active = $this->input->post('is_active');
 
@@ -91,7 +91,7 @@ class Users_model extends CI_model
             'email_user' => $email_user,
             'alamat_user' => $alamat_user,
             'no_telp' => $no_telp,
-            //  'image' => $image,
+            'image' => $image,
             'role_id' => $role_id,
             'is_active' => $is_active,
         );

@@ -48,7 +48,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="<?= base_url('admin/transaksi'); ?>">
                     <i class="fas fa-fw fa-table"></i>
                     <span>transaksi</span></a>
             </li>

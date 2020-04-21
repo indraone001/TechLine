@@ -1,54 +1,8 @@
-<?php
-$total = 0;
-$request = 0;
-foreach ($success as $tr) {
-    $total += $tr->total;
-}
-foreach ($transaksi as $tr) {
-    $request++;
-}
-?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-    <div class="row">
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. <?= $total; ?></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pending Requests Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $request; ?></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Transaction success</h1>
+    <h1 class="h3 mb-4 text-gray-800">Data Transaksi</h1>
 
     <!-- table -->
     <?= $this->session->flashdata('message'); ?>
@@ -62,10 +16,11 @@ foreach ($transaksi as $tr) {
                 <th style="color: white" scope="col">Oreder Date</th>
                 <th style="color: white" scope="col">Total</th>
                 <th style="color: white" scope="col">Bukti pembayaran</th>
+                <th style="color: white" scope="col">Action</th>
             </tr>
         </thead>
         <tbody class="">
-            <?php foreach ($success as $tr) { ?>
+            <?php foreach ($transaksi as $tr) { ?>
 
                 <tr style="background-color: white">
                     <th class="text-center"><?= $tr->id_transaksi; ?></th>
@@ -76,6 +31,12 @@ foreach ($transaksi as $tr) {
                     <td class="text-center"><?= $tr->total; ?></td>
                     <td class="text-center"><button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#edit<?= $tr->id_transaksi; ?>">View Image</button></td>
                     <td class="text-center">
+                        <form method="post" action="<?= base_url('admin/proccess_transaksi') ?>">
+                            <input type="text" id="id_transaksi" name="id_transaksi" value="<?= $tr->id_transaksi; ?>" hidden>
+                            <input type="text" id="id_obat" name="id_obat" value="<?= $tr->id_obat; ?>" hidden>
+                            <input type="text" id="jumlah" name="jumlah" value="<?= $tr->jumlah_obat; ?>" hidden>
+                            <button type="submit" class="btn btn-primary btn-sm" <?= $tr->id_obat; ?>">Proccess</button>
+                        </form>
                     </td>
                 </tr>
 
