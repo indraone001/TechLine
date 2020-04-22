@@ -104,4 +104,22 @@ class Users_model extends CI_model
         $this->db->update('Users', $data);
         return;
     }
+
+    public function editImage($image)
+    {
+        $id_user = $_SESSION['id'];
+        $alamat_user = $this->input->post('alamat_user');
+
+        $data = array(
+            'image' => $image,
+        );
+
+        $where = array(
+            'id_user' => $id_user
+        );
+
+        $this->db->where($where);
+        $this->db->update('Users', $data);
+        return;
+    }
 }
