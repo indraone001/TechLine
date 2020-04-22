@@ -1,0 +1,77 @@
+* {
+    font-family: 'montserrat', sans-serif;
+}
+.navbar-brand, .navbar-brand:hover {
+    font-size: 28px;
+    font-weight: 800;
+    color: #E8505B;
+}
+.navbar-nav a {
+    font-size: 15px;
+    font-weight: 600;
+    color: #454545;
+}
+.chart {
+    /* margin-left: 800px; */
+    position: absolute;
+    right: 200px;
+}
+.chart img {
+    width: 24px;   
+}
+.about {
+    position: absolute;
+    right : 108px;
+}
+.account {
+    position: absolute;
+    right: 20px;
+}
+.account a img {
+    width: 20px;
+}
+h2 {
+    font-weight: 700;
+}
+
+.card {
+    margin-top: 15%;
+    padding-top: 75px;
+    padding-right: 15%;
+    padding-left: 15%;
+    border: none;
+    border-radius: 26px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 975px;
+    margin-bottom: 5%;
+}
+
+.form-control {
+
+
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: #E8505B;
+    margin-top: 40px;
+    font-size: 18px;
+
+
+}
+
+
+.btn {
+    position: absolute;
+    left: 41%;
+    text-align: left;
+    padding: 5px 60px;
+    border-radius: 18px;
+    background-color: #E8505B;
+    margin-top: 85px;
+}
+
+.title-edit {
+
+   margin-top: 50px;
+   font-weight: 700;
+}
+
