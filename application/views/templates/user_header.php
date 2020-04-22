@@ -46,7 +46,7 @@
                                 <img src="<?= base_url('assets/img/users/') . $user['image']; ?>" alt="">
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Setting</a>
+                                <a class="dropdown-item" href="<?= base_url('/user/ShowProfile'); ?>">Setting</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?= base_url('/auth/logout'); ?> ">Logout</a>
                             </div>
